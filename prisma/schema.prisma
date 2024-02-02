@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -32,35 +29,110 @@ enum Gender {
   OTHER
 }
 
-model Authentication {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email     String   @unique
-  password  String
+model User {
+  id            Int             @id @default(autoincrement())
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  email         String          @unique
+  password      String
+  firstName     String
+  lastName      String
+  model         Model?
+  admin         Admin?
+  Token         Token[]
+  SubmitProfile SubmitProfile[]
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email     String   @unique
-  firstName String
-  lastName  String
-  model     Model[]
+model Admin {
+  id          Int  @id @default(autoincrement())
+  accessLevel Int
+  user        User @relation(fields: [userId], references: [id])
+  userId      Int  @unique
 }
 
 model Model {
-  id          Int       @id @default(autoincrement())
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  birthDate   DateTime
-  description String?
-  eyescolor   EyesColor
-  haircolor   HairColor
-  gender      Gender
-  height      Int
-  weight      Int
-  user        User      @relation(fields: [userId], references: [id])
-  userId      Int       @unique
+  id               Int                @id @default(autoincrement())
+  birthDate        DateTime
+  description      String?
+  eyescolor        EyesColor
+  haircolor        HairColor
+  gender           Gender
+  height           Int
+  weight           Int
+  photo            Photo[]
+  pastExperience   PastExperience[]
+  user             User               @relation(fields: [userId], references: [id])
+  userId           Int                @unique
+  Address          Address[]
+  SubmitToProfiles SubmitToProfiles[]
+}
+
+model Photo {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  url       String
+  model     Model    @relation(fields: [modelId], references: [id])
+  modelId   Int
+}
+
+model PastExperience {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  description String
+  model       Model    @relation(fields: [modelId], references: [id])
+  modelId     Int
+}
+
+model SubmitProfile {
+  id               Int                @id @default(autoincrement())
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  phone            String
+  birthDate        DateTime
+  firstName        String
+  lastName         String
+  eyescolor        EyesColor
+  haircolor        HairColor
+  photo            String
+  pastExperiences  String
+  Address          Address[]
+  SubmitToProfiles SubmitToProfiles[]
+  user             User               @relation(fields: [userId], references: [id])
+  userId           Int
+}
+
+model Address {
+  id              Int            @id @default(autoincrement())
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  number          String
+  street          String
+  city            String
+  zip             String
+  country         String
+  model           Model?         @relation(fields: [modelId], references: [id])
+  modelId         Int?
+  submitProfile   SubmitProfile? @relation(fields: [submitProfileId], references: [id])
+  submitProfileId Int?
+}
+
+model SubmitToProfiles {
+  id              Int           @id @default(autoincrement())
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  submitProfile   SubmitProfile @relation(fields: [submitProfileId], references: [id])
+  submitProfileId Int
+  model           Model         @relation(fields: [modelId], references: [id])
+  modelId         Int
+}
+
+model Token {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  token     String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
 }
