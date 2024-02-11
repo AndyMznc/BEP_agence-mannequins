@@ -56,11 +56,11 @@ const seed = async () => {
   for (let i = 0; i < users.length; i++) {
     console.log('Creating user & model:', users[i])
 
-    const user = await prisma.user.create({
+    const user = await prisma.user.upsert({
       data: users[i]
     })
 
-    await prisma.model.create({
+    await prisma.model.upsert({
       data: {
         ...models[i],
         userId: user.id
