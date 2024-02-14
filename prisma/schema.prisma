@@ -52,7 +52,7 @@ model Admin {
 
 model Model {
   id               Int                @id @default(autoincrement())
-  birthDate        DateTime
+  birthDate        DateTime           @db.Date
   description      String?
   eyescolor        EyesColor
   haircolor        HairColor
