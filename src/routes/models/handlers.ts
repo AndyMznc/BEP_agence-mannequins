@@ -4,7 +4,11 @@ import prisma from '../../libs/prisma'
 
 export async function getModels() {
   try {
-    return await prisma.model.findMany()
+    return await prisma.model.findMany({
+      include: {
+        user: true
+      }
+    })
   } catch (error: unknown) {
     console.log(`Erreur durant l'obtention des mannequins : ${error}`)
   }
@@ -12,7 +16,10 @@ export async function getModels() {
 
 export async function getModel(id: number) {
   try {
-    const model = await prisma.model.findUnique({ where: { id } })
+    const model = await prisma.model.findUnique({
+      where: { id },
+      include: { user: true }
+    })
 
     if (!model) {
       throw new NotFoundError('Mannequin non trouvé')
@@ -26,6 +33,9 @@ export async function getModel(id: number) {
 
 export async function createModel(data: any) {
   try {
+    if (typeof data.birthDate === 'string') {
+      data.birthDate = new Date(data.birthDate)
+    }
     return await prisma.model.create({ data })
   } catch (error: unknown) {
     console.log(`Erreur durant la création du mannequin : ${error}`)
