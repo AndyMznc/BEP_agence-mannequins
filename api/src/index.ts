@@ -24,7 +24,7 @@ app
   .listen(process.env.PORT || 3000)
 
 console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
+  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}. e.g: http://localhost:${app.server?.port}/api/models`
 )
 
 const prisma = new PrismaClient()
