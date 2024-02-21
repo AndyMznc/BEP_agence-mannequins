@@ -99,8 +99,8 @@ model SubmitProfile {
   pastExperiences  String
   Address          Address[]
   SubmitToProfiles SubmitToProfiles[]
-  user             User               @relation(fields: [userId], references: [id])
-  userId           Int
+  user             User?              @relation(fields: [userId], references: [id])
+  userId           Int?
 }
 
 model Address {
