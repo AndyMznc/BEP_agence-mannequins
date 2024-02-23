@@ -1,7 +1,9 @@
+// import "./style/index.scss";
+
 function App() {
   return (
     <>
-      <h1>App tsx</h1>
+      <h1>App</h1>
     </>
   );
 }
