@@ -1,10 +1,14 @@
-// import "./style/index.scss";
+import { RouterProvider } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import router from "./routes/Root";
+import "./styles/index.scss";
 
 function App() {
   return (
-    <>
-      <h1>App</h1>
-    </>
+    <div>
+      <Navbar />
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
