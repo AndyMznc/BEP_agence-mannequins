@@ -1,0 +1,25 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: calc(100vw / 1440 * 10);
+
+  line-height: 1;
+
+  @include media("<=phone") {
+    font-size: calc(100vw / 768 * 10);
+  }
+}
+
+body {
+  @extend %description-16;
+
+  @include media("<=phone") {
+    // font-stretch: 15px;
+  }
+}
