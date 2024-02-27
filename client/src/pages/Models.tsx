@@ -1,11 +1,14 @@
-import React from "react";
+import React from 'react'
+import { FetchModels } from '../components/FetchModels'
 
 const Models: React.FC = () => {
   return (
-    <>
-      <h1>Models</h1>
-    </>
-  );
-};
+    <div className="mannequins">
+      <h1>Mannequins</h1>
 
-export default Models;
+      <FetchModels />
+    </div>
+  )
+}
+
+export default Models

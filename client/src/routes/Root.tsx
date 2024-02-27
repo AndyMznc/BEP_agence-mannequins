@@ -2,6 +2,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
+  Routes,
 } from "react-router-dom";
 import About from "../pages/About";
 import ApplyProfil from "../pages/ApplyProfil";
@@ -12,14 +13,14 @@ import Models from "../pages/Models";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route>
+    <Routes>
       <Route path="/" element={<Home />}></Route>
       <Route path="about" element={<About />}></Route>
       <Route path="mannequins" element={<Models />}></Route>
       <Route path="postuler" element={<ApplyProfil />}></Route>
       <Route path="contact" element={<Contact />}></Route>
       <Route path="*" element={<ErrorPage />}></Route>
-    </Route>
+    </Routes>
   )
 );
 

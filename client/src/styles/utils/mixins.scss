@@ -1,0 +1,37 @@
+%cover {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+%center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%mg-40 {
+  margin: auto 4rem;
+}
+
+%mg-20 {
+  margin: auto 2rem;
+}
+
+%pd-40 {
+  padding: auto 4rem;
+}
+
+%space-y {
+  // section space top and bottom
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+%hover-link {
+  &:hover {
+    // color: $color-silver-chalice;
+  }
+}

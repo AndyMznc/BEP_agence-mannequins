@@ -1,0 +1,211 @@
+// * {
+//   outline: 1px solid red;
+// }
+
+.home {
+  &__hero {
+    // Section Header
+    &__header {
+      background-image: url('../../../public/images/femme-visage-peint-arc-en-ciel.jpg');
+      background-position: center;
+      background-size: cover;
+      filter: grayscale(100%);
+      height: 100vh;
+      max-height: 63rem;
+      position: relative;
+
+      &__bubble {
+        align-items: center;
+        backdrop-filter: blur(5px);
+        background-color: rgba(194, 194, 194, 0.5);
+        border-radius: 50%;
+        box-shadow: 2px 2px 4px rgb(255, 255, 255, 0.5);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+        left: 20rem;
+        max-height: 40rem;
+        max-width: 40rem;
+        position: absolute;
+        top: 5rem;
+        width: 100%;
+
+        &__media {
+          max-width: 23.4rem;
+          max-height: 12.5rem;
+
+          &--image {
+            @extend %cover;
+
+            position: relative;
+          }
+        }
+
+        &--description {
+          @extend %title-32;
+          text-align: center;
+          margin: 1rem 0;
+
+          .color-white {
+            color: #fff;
+          }
+        }
+
+        &--location {
+          text-align: center;
+          font-weight: 200;
+          margin: 0 3rem;
+        }
+      }
+    }
+  }
+
+  // Section Explore
+  &__explore {
+    padding: 8.5rem 0;
+    background-color: $color-gallery;
+
+    &__texts {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      max-width: 106.2rem;
+      margin: 0 auto;
+
+      &--title {
+        @extend %title-32;
+      }
+
+      &--description {
+        margin: 3.8rem 0;
+      }
+    }
+
+    &__navigation {
+      display: flex;
+
+      &__right,
+      &__left {
+        max-height: 80rem;
+        max-width: 60rem;
+        width: 100%;
+
+        &__link {
+          display: flex;
+          flex-direction: row-reverse;
+          align-items: end;
+
+          &__media {
+            width: 100%;
+            height: 100%;
+
+            &--image {
+              @extend %cover;
+              position: relative;
+              filter: grayscale(100%);
+            }
+          }
+
+          &__genre {
+            display: flex;
+            transform: rotate(-90deg);
+            padding: 4rem 0 3rem;
+
+            color: $color-froly;
+          }
+        }
+      }
+    }
+  }
+
+  // Section Presentation
+  &__presentation {
+    display: flex;
+    padding: 8.5rem 0;
+    background-color: $color-ligt-mine-shaft;
+    color: $color-alto;
+
+    &__texts {
+      max-width: 128rem;
+      margin: 0 auto;
+      text-align: center;
+
+      &--title {
+        @extend %title-32;
+      }
+
+      &--description {
+        margin-top: 4rem;
+
+        p {
+          margin: 1.5rem;
+        }
+      }
+    }
+  }
+
+  // Section Postulation
+  &__postuler {
+    display: flex;
+    justify-content: space-between;
+
+    &__media {
+      max-width: 62.4rem;
+      max-height: 67.5rem;
+      background-color: red;
+
+      &--image {
+        @extend %cover;
+
+        position: relative;
+      }
+    }
+
+    &__texts {
+      max-width: 62.7rem;
+      max-height: 45.6rem;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      &--title {
+        @extend %title-32;
+      }
+
+      &--description {
+        margin-top: 4rem;
+
+        p {
+          margin: 1.5rem;
+        }
+      }
+
+      &--link {
+        @extend %title-32;
+
+        font-size: 20px;
+        position: relative;
+        margin: 0 auto;
+        padding: 16px 32px;
+        width: fit-content;
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: solid 1px $color-froly;
+          border-radius: 50%;
+          transform: rotate(-10deg);
+        }
+      }
+    }
+  }
+}

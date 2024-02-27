@@ -1,10 +1,17 @@
-@import "./base/reset";
+@import './base/reset';
 
-@import "./utils/mixins";
-@import "./utils/responsive";
+@import './utils/variables';
+@import './utils/functions';
+@import './utils/mixins';
+@import './utils/vendors';
+@import './utils/responsive';
 
-@import "./shared/desciptions";
-@import "./shared/titles";
+@import './shared/desciptions';
+@import './shared/titles';
 
-@import "./base/fonts";
-@import "./base/base";
+@import './base/fonts';
+@import './base/base';
+
+@import './layout/navigation';
+
+@import './pages/home';

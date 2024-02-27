@@ -6,7 +6,7 @@ import Models from "../pages/Models";
 
 const RoutesConfig = [
   { path: "/", name: "Accueil", component: Home },
-  { path: "/about", name: "À propos", component: About },
+  { path: "/about", name: "A propos", component: About },
   { path: "/mannequins", name: "Mannequins", component: Models },
   { path: "/postuler", name: "Postuler", component: ApplyProfil },
   { path: "/contact", name: "Contact", component: Contact },

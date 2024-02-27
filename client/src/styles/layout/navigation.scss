@@ -1,0 +1,22 @@
+.navigation {
+  align-items: center;
+  display: flex;
+  height: 8rem;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    max-width: 128rem;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__menu {
+    max-width: 95.3rem;
+
+    &__list {
+      display: flex;
+      gap: 13rem;
+    }
+  }
+}
