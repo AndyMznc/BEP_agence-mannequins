@@ -1,128 +1,109 @@
 const { PrismaClient, Gender, EyesColor, HairColor } = require('@prisma/client')
+const { faker } = require('@faker-js/faker')
 
 const prisma = new PrismaClient()
 
-const users = [
-  {
-    email: 'john.doe@gmail.com',
-    password: 'Passw0rd1',
-    firstName: 'John',
-    lastName: 'Doe'
-  },
-  {
-    email: 'sarah_smith@hotmail.com',
-    password: 'SaRaH123!',
-    firstName: 'Sarah',
-    lastName: 'Smith'
-  }
-  // Add more users as needed
-]
+const users = []
+const models = []
+const admins = []
+const photos = []
+const pastExperiences = []
+const addresses = []
+const submitProfiles = []
+const tokens = []
 
-const models = [
-  {
-    birthDate: new Date('1995-02-01'),
-    eyescolor: EyesColor.BLUE,
-    haircolor: HairColor.BLACK,
-    gender: Gender.MALE,
-    height: 180,
-    weight: 75
-  },
-  {
-    birthDate: new Date('1991-06-15'),
-    eyescolor: EyesColor.GREEN,
-    haircolor: HairColor.BROWN,
-    gender: Gender.FEMALE,
-    height: 170,
-    weight: 60
-  }
-  // Add more models as needed
-]
+const generateFakeData = count => {
+  for (let i = 0; i < count; i++) {
+    const email = faker.internet.email()
+    const password = faker.internet.password()
+    const firstName = faker.person.firstName()
+    const lastName = faker.person.lastName()
 
-const admins = [
-  {
-    accessLevel: 1
-  },
-  {
-    accessLevel: 2
-  }
-  // Add more admins as needed
-]
+    users.push({
+      email,
+      password,
+      firstName,
+      lastName
+    })
 
-const photos = [
-  {
-    url: 'https://unsplash.com/fr/photos/homme-portant-un-t-shirt-a-col-rond-vert-regardant-vers-le-haut-lkMJcGDZLVs',
-    isProfilePicture: true
-  },
-  {
-    url: 'https://unsplash.com/fr/photos/femme-faisant-la-pose-AoL-mVxprmk'
-  }
-  // Add more photos as needed
-]
+    models.push({
+      birthDate: faker.date.birthdate(),
+      eyescolor: faker.helpers.arrayElement([
+        EyesColor.BLUE,
+        EyesColor.GREEN,
+        EyesColor.BROWN,
+        EyesColor.BLACK,
+        EyesColor.GREY
+      ]),
+      haircolor: faker.helpers.arrayElement([
+        HairColor.BLONDE,
+        HairColor.BROWN,
+        HairColor.BLACK,
+        HairColor.RED,
+        HairColor.GREY
+      ]),
+      gender: faker.helpers.arrayElement([
+        Gender.MALE,
+        Gender.FEMALE,
+        Gender.OTHER
+      ]),
+      height: faker.number.int({ min: 150, max: 200 }),
+      weight: faker.number.int({ min: 40, max: 100 })
+    })
 
-const pastExperiences = [
-  {
-    description: 'Experience 1'
-  },
-  {
-    description: 'Experience 2'
-  }
-  // Add more past experiences as needed
-]
+    admins.push({
+      accessLevel: faker.number.int({ min: 1, max: 5 })
+    })
 
-const addresses = [
-  {
-    number: '123',
-    street: 'Main St',
-    city: 'New York',
-    zip: '10001',
-    country: 'USA'
-  },
-  {
-    number: '456',
-    street: 'Market St',
-    city: 'San Francisco',
-    zip: '94105',
-    country: 'USA'
-  }
-  // Add more addresses as needed
-]
+    photos.push({
+      url: faker.image.url()
+    })
 
-const submitProfiles = [
-  {
-    phone: '123-456-7890',
-    birthDate: new Date('1995-02-01'),
-    firstName: 'John',
-    lastName: 'Doe',
-    eyescolor: EyesColor.BLUE,
-    haircolor: HairColor.BLACK,
-    photo: 'https://example.com/photo3.jpg',
-    pastExperiences: 'Experience 3'
-  },
-  {
-    phone: '987-654-3210',
-    birthDate: new Date('1991-06-15'),
-    firstName: 'Sarah',
-    lastName: 'Smith',
-    eyescolor: EyesColor.GREEN,
-    haircolor: HairColor.BROWN,
-    photo: 'https://example.com/photo4.jpg',
-    pastExperiences: 'Experience 4'
-  }
-  // Add more submit profiles as needed
-]
+    pastExperiences.push({
+      description: faker.lorem.sentence()
+    })
 
-const tokens = [
-  {
-    token: 'random_token_1'
-  },
-  {
-    token: 'random_token_2'
+    addresses.push({
+      number: faker.location.buildingNumber(),
+      street: faker.location.street(),
+      city: faker.location.city(),
+      zip: faker.location.zipCode(),
+      country: faker.location.country()
+    })
+
+    submitProfiles.push({
+      phone: faker.phone.number(),
+      birthDate: faker.date.birthdate(),
+      firstName,
+      lastName,
+      eyescolor: faker.helpers.arrayElement([
+        EyesColor.BLUE,
+        EyesColor.GREEN,
+        EyesColor.BROWN,
+        EyesColor.BLACK,
+        EyesColor.GREY
+      ]),
+      haircolor: faker.helpers.arrayElement([
+        HairColor.BLONDE,
+        HairColor.BROWN,
+        HairColor.BLACK,
+        HairColor.RED,
+        HairColor.GREY
+      ]),
+      photo: faker.image.url(),
+      pastExperiences: faker.lorem.sentence()
+    })
+
+    tokens.push({
+      token: faker.string.uuid()
+    })
   }
-  // Add more tokens as needed
-]
+}
 
 const seed = async () => {
   console.log('Creating users, models & other data ...')
+
+  generateFakeData(10)
 
   for (let i = 0; i < users.length; i++) {
     console.log('Creating user, model & other data:', users[i])
@@ -130,11 +111,34 @@ const seed = async () => {
     const user = await prisma.user.create({
       data: users[i]
     })
-
     const model = await prisma.model.create({
       data: {
         ...models[i],
-        userId: user.id
+        user: {
+          connect: {
+            id: user.id
+          }
+        }
+      }
+    })
+
+    const profilePicture = await prisma.photo.create({
+      data: {
+        ...photos[i],
+        model: {
+          connect: {
+            id: model.id
+          }
+        }
+      }
+    })
+
+    await prisma.model.update({
+      where: {
+        id: model.id
+      },
+      data: {
+        profilePictureId: profilePicture.id
       }
     })
 
@@ -163,7 +167,6 @@ const seed = async () => {
       data: {
         ...addresses[i],
         modelId: model.id
-        // Omit `submitProfileId` if address is not related to a submit profile
       }
     })
 
