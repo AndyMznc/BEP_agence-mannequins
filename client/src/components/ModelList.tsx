@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import api from '../api'
 import { Model } from '../types'
 
-export const FetchModels: React.FC = () => {
+export const ModelList: React.FC = () => {
   const [models, setModels] = React.useState<Model[]>([])
+
+  console.log(models) // * Debugging
 
   useEffect(() => {
     const fetchModels = async () => {
