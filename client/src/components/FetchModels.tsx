@@ -1,27 +1,47 @@
-import axios from 'axios'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import api from '../api'
+import { Model } from '../types'
 
 export const FetchModels: React.FC = () => {
-  // const [models, setModels] = React.useState([])
+  const [models, setModels] = React.useState<Model[]>([])
 
-  const API_URL = 'http://localhost:3000/api/models'
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(API_URL)
-      console.log(response.data)
-    } catch (error) {
-      console.error(error)
+  useEffect(() => {
+    const fetchModels = async () => {
+      try {
+        const response = await api.get<Model[]>('/models')
+        setModels(response.data)
+      } catch (error) {
+        console.error(error)
+      }
     }
-  }
-
-  React.useEffect(() => {
-    fetchData()
+    fetchModels()
   }, [])
 
   return (
     <div className="mannequins">
-      <h1>Fetching models</h1>
+      <ul className="mannequins__liste">
+        {models.map(model => (
+          <li key={model.id}>
+            <Link
+              to={`/mannequins/${model.user.firstName.toLowerCase()}-${model.user.lastName.toLowerCase()}`}
+            >
+              <div className="mannequin__carte">
+                <figure className="mannequin__carte__media">
+                  <img
+                    src={model.photo[0].url}
+                    alt={`${model.user.firstName} ${model.user.lastName}`}
+                    className="mannequin__carte__media--image"
+                  />
+                </figure>
+                <p className="mannequin__carte--nom">
+                  {model.user.firstName} {model.user.lastName}
+                </p>
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
