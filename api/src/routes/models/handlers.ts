@@ -6,7 +6,8 @@ export async function getModels() {
   try {
     return await prisma.model.findMany({
       include: {
-        user: true
+        user: true,
+        photo: true
       }
     })
   } catch (error: unknown) {

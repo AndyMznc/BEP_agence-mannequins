@@ -50,10 +50,11 @@ const admins = [
 
 const photos = [
   {
-    url: 'https://example.com/photo1.jpg'
+    url: 'https://unsplash.com/fr/photos/homme-portant-un-t-shirt-a-col-rond-vert-regardant-vers-le-haut-lkMJcGDZLVs',
+    isProfilePicture: true
   },
   {
-    url: 'https://example.com/photo2.jpg'
+    url: 'https://unsplash.com/fr/photos/femme-faisant-la-pose-AoL-mVxprmk'
   }
   // Add more photos as needed
 ]

@@ -1,3 +1,4 @@
+import { cors } from '@elysiajs/cors'
 import { PrismaClient } from '@prisma/client'
 import { Elysia } from 'elysia'
 import addressRoutes from './routes/addresses'
@@ -11,6 +12,7 @@ import userRoutes from './routes/users'
 const app = new Elysia()
 
 app
+  .use(cors())
   .group('/api', app =>
     app
       .use(addressRoutes)
