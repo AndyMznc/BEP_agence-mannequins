@@ -8,25 +8,27 @@ datasource db {
 }
 
 enum EyesColor {
-  BLUE
-  GREEN
-  BROWN
-  BLACK
-  GREY
+  BLEU
+  VERT
+  MARRON
+  NOIR
+  GRIS
+  VAIRONS
 }
 
 enum HairColor {
-  BLONDE
-  BROWN
-  BLACK
-  RED
-  GREY
+  BLOND
+  MARRON
+  NOIR
+  ROUX
+  GRIS
+  CHAUVE
 }
 
 enum Gender {
-  MALE
-  FEMALE
-  OTHER
+  HOMME
+  FEMME
+  AUTRE
 }
 
 model User {
@@ -53,7 +55,7 @@ model Admin {
 model Model {
   id               Int                @id @default(autoincrement())
   birthDate        DateTime           @db.Date
-  description      String?
+  description      String?            @db.Text
   eyescolor        EyesColor
   haircolor        HairColor
   gender           Gender
@@ -83,7 +85,7 @@ model PastExperience {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  description String
+  description String   @db.Text
   model       Model    @relation(fields: [modelId], references: [id])
   modelId     Int
 }

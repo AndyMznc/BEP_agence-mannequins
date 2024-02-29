@@ -28,24 +28,26 @@ const generateFakeData = count => {
 
     models.push({
       birthDate: faker.date.birthdate(),
+      description: faker.lorem.paragraphs(3, '<br/>\n'),
       eyescolor: faker.helpers.arrayElement([
-        EyesColor.BLUE,
-        EyesColor.GREEN,
-        EyesColor.BROWN,
-        EyesColor.BLACK,
-        EyesColor.GREY
+        EyesColor.BLEU,
+        EyesColor.VERT,
+        EyesColor.MARRON,
+        EyesColor.NOIR,
+        EyesColor.GRIS,
+        EyesColor.VAIRONS
       ]),
       haircolor: faker.helpers.arrayElement([
-        HairColor.BLONDE,
-        HairColor.BROWN,
-        HairColor.BLACK,
-        HairColor.RED,
-        HairColor.GREY
+        HairColor.BLOND,
+        HairColor.MARRON,
+        HairColor.NOIR,
+        HairColor.ROUX,
+        HairColor.GRIS
       ]),
       gender: faker.helpers.arrayElement([
-        Gender.MALE,
-        Gender.FEMALE,
-        Gender.OTHER
+        Gender.HOMME,
+        Gender.FEMME,
+        Gender.AUTRE
       ]),
       height: faker.number.int({ min: 150, max: 200 }),
       weight: faker.number.int({ min: 40, max: 100 })
@@ -77,18 +79,18 @@ const generateFakeData = count => {
       firstName,
       lastName,
       eyescolor: faker.helpers.arrayElement([
-        EyesColor.BLUE,
-        EyesColor.GREEN,
-        EyesColor.BROWN,
-        EyesColor.BLACK,
-        EyesColor.GREY
+        EyesColor.BLEU,
+        EyesColor.VERT,
+        EyesColor.MARRON,
+        EyesColor.NOIR,
+        EyesColor.GRIS
       ]),
       haircolor: faker.helpers.arrayElement([
-        HairColor.BLONDE,
-        HairColor.BROWN,
-        HairColor.BLACK,
-        HairColor.RED,
-        HairColor.GREY
+        HairColor.BLOND,
+        HairColor.MARRON,
+        HairColor.NOIR,
+        HairColor.ROUX,
+        HairColor.GRIS
       ]),
       photo: faker.image.url(),
       pastExperiences: faker.lorem.sentence()

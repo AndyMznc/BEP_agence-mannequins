@@ -1,23 +1,25 @@
 export enum EyesColor {
-  BLUE = 'BLUE',
-  GREEN = 'GREEN',
-  BROWN = 'BROWN',
-  BLACK = 'BLACK',
-  GREY = 'GREY',
+  BLEU = 'Bleu',
+  VERT = 'Vert',
+  MARRON = 'Marron',
+  NOIR = 'Noir',
+  GRIS = 'Gris',
+  VAIRONS = 'Vairons',
 }
 
 export enum HairColor {
-  BLONDE = 'BLONDE',
-  BROWN = 'BROWN',
-  BLACK = 'BLACK',
-  RED = 'RED',
-  GREY = 'GREY',
+  BLOND = 'Blond',
+  MARRON = 'Marron',
+  NOIR = 'Noir',
+  ROUX = 'Roux',
+  GRIS = 'Gris',
+  CHAUVE = 'Chauve',
 }
 
 export enum Gender {
-  MALE = 'MALE',
-  FEMALE = 'FEMALE',
-  OTHER = 'OTHER',
+  HOMME = 'Homme',
+  FEMME = 'Femme',
+  AUTRE = 'Autre',
 }
 
 export interface Address {
@@ -91,7 +93,8 @@ export interface Model {
   userId: number
   address: Address[]
   submitToProfiles: SubmitToProfiles[]
-
+  profilePictureId: number | null
+  profilePicture: Photo | null
   user: User
 }
 

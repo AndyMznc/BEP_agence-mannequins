@@ -5,7 +5,6 @@ const Models: React.FC = () => {
   return (
     <div className="mannequins">
       <h1>Mannequins</h1>
-
       <ModelList />
     </div>
   )

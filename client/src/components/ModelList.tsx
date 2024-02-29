@@ -6,12 +6,11 @@ import { Model } from '../types'
 export const ModelList: React.FC = () => {
   const [models, setModels] = React.useState<Model[]>([])
 
-  console.log(models) // * Debugging
-
   useEffect(() => {
     const fetchModels = async () => {
       try {
         const response = await api.get<Model[]>('/models')
+        console.log(response.data) // * Debuggings;
         setModels(response.data)
       } catch (error) {
         console.error(error)
@@ -25,13 +24,11 @@ export const ModelList: React.FC = () => {
       <ul className="mannequins__liste">
         {models.map(model => (
           <li key={model.id}>
-            <Link
-              to={`/mannequins/${model.user.firstName.toLowerCase()}-${model.user.lastName.toLowerCase()}`}
-            >
+            <Link to={`/mannequins/${model.id}`}>
               <div className="mannequin__carte">
                 <figure className="mannequin__carte__media">
                   <img
-                    src={model.photo[0].url}
+                    src={model.profilePicture?.url}
                     alt={`${model.user.firstName} ${model.user.lastName}`}
                     className="mannequin__carte__media--image"
                   />

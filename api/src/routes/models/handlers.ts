@@ -7,7 +7,8 @@ export async function getModels() {
     return await prisma.model.findMany({
       include: {
         user: true,
-        photo: true
+        profilePicture: true,
+        pastExperience: true
       }
     })
   } catch (error: unknown) {
@@ -19,7 +20,7 @@ export async function getModel(id: number) {
   try {
     const model = await prisma.model.findUnique({
       where: { id },
-      include: { user: true }
+      include: { user: true, profilePicture: true, pastExperience: true }
     })
 
     if (!model) {
