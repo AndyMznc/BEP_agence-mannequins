@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import RoutesConfig from '../routes/RouteConfig'
 
 const Navbar = () => {
@@ -7,11 +6,11 @@ const Navbar = () => {
       <nav className="navigation">
         <div className="navigation__wrapper">
           <div className="navigation__logo">
-            <Link to="/">
+            <a href="/">
               <figure className="navigation__logo__media">
                 Ynda Models [LOGO]
               </figure>
-            </Link>
+            </a>
           </div>
 
           <div className="navigation__menu">
@@ -23,7 +22,7 @@ const Navbar = () => {
                       key={route.path}
                       className="navigation__menu__list--item"
                     >
-                      <Link to={route.path}>{route.name}</Link>
+                      <a href={route.path}>{route.name}</a>
                     </li>
                   )
                 }

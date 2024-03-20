@@ -32,17 +32,18 @@ enum Gender {
 }
 
 model User {
-  id            Int             @id @default(autoincrement())
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  email         String          @unique
-  password      String
-  firstName     String
-  lastName      String
-  model         Model?
-  admin         Admin?
-  Token         Token[]
-  SubmitProfile SubmitProfile[]
+  id             Int              @id @default(autoincrement())
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  email          String           @unique
+  password       String
+  firstName      String
+  lastName       String
+  model          Model?
+  admin          Admin?
+  Token          Token[]
+  SubmitProfile  SubmitProfile[]
+  Authentication Authentication[]
 }
 
 model Admin {
@@ -69,6 +70,16 @@ model Model {
   userId           Int                @unique
   Address          Address[]
   SubmitToProfiles SubmitToProfiles[]
+}
+
+model Authentication {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String
+  password  String
+  User      User     @relation(fields: [userId], references: [id])
+  userId    Int      @unique
 }
 
 model Photo {

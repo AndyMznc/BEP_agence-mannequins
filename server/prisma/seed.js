@@ -203,5 +203,5 @@ seed()
   })
   .finally(async () => {
     await prisma.$disconnect()
-    console.log('Disconnect ing Prisma client ...')
+    console.log('Disconnecting Prisma client ...')
   })

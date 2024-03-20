@@ -1,6 +1,12 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import About from '../pages/About'
+import ApplyProfil from '../pages/ApplyProfil'
+import Contact from '../pages/Contact'
+import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Logout from '../pages/Logout'
+import ModelSingle from '../pages/ModelSingle'
+import Models from '../pages/Models'
 import { useAuth } from '../provider/authProvider'
 import { ProtectedRoute } from './ProtectedRoute'
 
@@ -8,8 +14,9 @@ const Routes = () => {
   const { token } = useAuth()
 
   const routesForPublic = [
-    { path: '/service', element: <div>Service Page</div> },
-    { path: '/about-us', element: <div>About Us</div> },
+    { path: '/about', element: <About /> },
+    { path: '/mannequins', element: <Models /> },
+    { path: '/contact', element: <Contact /> },
   ]
 
   const routesForAuthenticated = [
@@ -17,15 +24,17 @@ const Routes = () => {
       path: '/',
       element: <ProtectedRoute />,
       children: [
-        { path: '/', element: <div>User Home Page</div> },
-        { path: '/profile', element: <div>User Profile</div> },
+        { path: '/', element: <Home /> },
+        { path: '/mannequins/:slug', element: <ModelSingle /> },
+        { path: '/postuler', element: <ApplyProfil /> },
+        { path: '/profile', element: <div>User Profile</div> }, // Exemple de page protégée
         { path: '/logout', element: <Logout /> },
       ],
     },
   ]
 
   const routesForNotAuthenticated = [
-    { path: '/', element: <div>Home</div> },
+    { path: '/', element: <Home /> },
     { path: '/login', element: <Login /> },
   ]
 
